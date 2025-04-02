@@ -36,14 +36,14 @@ const PerformanceEvaluationPage: React.FC = () => {
   };
 
   return (
-    <div className="shadow-[0px_1px_3px_0px_rgba(0,0,0,0.30)] bg-[#F4F6F9]">
-      <div className="bg-[rgba(255,255,255,0.00)] w-full max-md:max-w-full">
+    <div className="min-h-screen bg-[#F4F6F9]">
+      <div className="w-full">
         <Navbar />
       </div>
 
       <SubNavbar activeTab={activeTab} onTabChange={handleTabChange} />
 
-      <div className="w-full overflow-hidden pt-6 pb-20 px-20 max-md:max-w-full max-md:px-5">
+      <div className="w-full pt-6 pb-12 px-6 md:px-12 lg:px-20">
         <PerformanceFilters onCreateEvaluation={handleCreateEvaluation} />
 
         <PerformanceTable
@@ -51,13 +51,13 @@ const PerformanceEvaluationPage: React.FC = () => {
           onActionClick={handleActionClick}
         />
 
-        <div className="flex w-full flex-col items-center justify-center mt-6 py-2.5 max-md:max-w-full">
+        <div className="flex w-full flex-col items-center justify-center mt-8 py-4">
           <Pagination>
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious
                   onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
-                  className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
+                  className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
                 />
               </PaginationItem>
               
@@ -66,6 +66,7 @@ const PerformanceEvaluationPage: React.FC = () => {
                   <PaginationLink
                     isActive={currentPage === page}
                     onClick={() => handlePageChange(page)}
+                    className="cursor-pointer"
                   >
                     {page}
                   </PaginationLink>
@@ -75,7 +76,7 @@ const PerformanceEvaluationPage: React.FC = () => {
               <PaginationItem>
                 <PaginationNext
                   onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
-                  className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
+                  className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
                 />
               </PaginationItem>
             </PaginationContent>

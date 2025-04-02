@@ -1,8 +1,10 @@
+
 import React from "react";
 import { Evaluation } from "../../data/performanceData";
 import StatusTag from "./StatusTag";
 import AreaTag from "./AreaTag";
 import AvatarGroup from "./AvatarGroup";
+import { MoreVertical, Users } from "lucide-react";
 
 interface PerformanceTableProps {
   evaluations: Evaluation[];
@@ -14,59 +16,39 @@ const PerformanceTable: React.FC<PerformanceTableProps> = ({
   onActionClick = () => {},
 }) => {
   return (
-    <div className="bg-white w-full overflow-hidden mt-6 py-2 rounded-lg max-md:max-w-full">
-      <div className="w-full max-md:max-w-full">
+    <div className="bg-white w-full overflow-x-auto mt-6 rounded-lg shadow-sm">
+      <div className="min-w-[1000px] w-full">
         {/* Table Header */}
-        <div className="flex w-full text-sm text-[#344449] font-medium leading-6 flex-wrap max-md:max-w-full">
-          <div className="flex min-w-60 items-stretch flex-1 shrink basis-10">
-            <div className="self-stretch min-w-60 w-full h-full flex-1 shrink basis-[0%] p-2">
-              Título da avaliação
-            </div>
+        <div className="flex w-full text-sm text-[#344449] font-medium border-b">
+          <div className="flex-1 min-w-[200px] p-4">
+            Título da avaliação
           </div>
-          <div className="flex items-stretch whitespace-nowrap w-[114px]">
-            <div className="self-stretch w-full h-full flex-1 shrink basis-[0%] p-2">
-              Tipo
-            </div>
+          <div className="w-[100px] p-4">
+            Tipo
           </div>
-          <div className="flex items-stretch whitespace-nowrap w-[114px]">
-            <div className="self-stretch w-full h-full flex-1 shrink basis-[0%] p-2">
-              Período
-            </div>
+          <div className="w-[100px] p-4">
+            Período
           </div>
-          <div className="self-stretch flex items-stretch whitespace-nowrap h-full w-[115px]">
-            <div className="text-ellipsis self-stretch flex-1 shrink basis-[0%] w-full h-full py-2">
-              Avaliadores
-            </div>
+          <div className="w-[120px] p-4">
+            Avaliadores
           </div>
-          <div className="flex items-stretch whitespace-nowrap w-[114px]">
-            <div className="self-stretch w-full h-full flex-1 shrink basis-[0%] p-2">
-              Início
-            </div>
+          <div className="w-[100px] p-4">
+            Início
           </div>
-          <div className="flex items-stretch whitespace-nowrap w-[114px]">
-            <div className="self-stretch w-full h-full flex-1 shrink basis-[0%] p-2">
-              Fim
-            </div>
+          <div className="w-[100px] p-4">
+            Fim
           </div>
-          <div className="self-stretch flex items-stretch whitespace-nowrap h-full w-[117px] px-2">
-            <div className="text-ellipsis self-stretch flex-1 shrink basis-[0%] w-full h-full p-2">
-              Público
-            </div>
+          <div className="w-[120px] p-4">
+            Público
           </div>
-          <div className="self-stretch flex items-stretch whitespace-nowrap h-full w-[124px]">
-            <div className="text-ellipsis self-stretch flex-1 shrink basis-[0%] w-full h-full py-2">
-              Colaboradores
-            </div>
+          <div className="w-[120px] p-4">
+            Colaboradores
           </div>
-          <div className="self-stretch flex items-stretch whitespace-nowrap h-full w-[102px] px-2">
-            <div className="self-stretch w-full h-full flex-1 shrink basis-[0%] py-2">
-              Status
-            </div>
+          <div className="w-[100px] p-4">
+            Status
           </div>
-          <div className="flex items-stretch whitespace-nowrap justify-center w-[100px] px-5">
-            <div className="self-stretch w-full h-full flex-1 shrink basis-[0%] p-2">
-              Ações
-            </div>
+          <div className="w-[80px] p-4 text-center">
+            Ações
           </div>
         </div>
 
@@ -74,53 +56,43 @@ const PerformanceTable: React.FC<PerformanceTableProps> = ({
         {evaluations.map((evaluation, index) => (
           <div
             key={evaluation.id}
-            className={`${index % 2 === 0 ? "bg-[rgba(247,250,253,1)]" : ""} flex w-full flex-wrap max-md:max-w-full`}
+            className={`flex w-full ${index % 2 === 0 ? "bg-[#F7FAFD]" : ""} hover:bg-[#F0F8FF] transition-colors`}
           >
             {/* Title */}
-            <div className="flex min-w-60 min-h-11 items-stretch text-sm text-[#586B78] font-normal leading-6 flex-1 shrink basis-20">
-              <div
-                className={`${evaluation.isNew ? "text-ellipsis min-w-60 w-[245px]" : ""} px-2`}
-              >
-                {evaluation.title}
-              </div>
+            <div className="flex-1 min-w-[200px] p-4 flex items-center text-sm text-[#586B78]">
+              <span className="truncate">{evaluation.title}</span>
               {evaluation.isNew && (
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/ab3ccf89ba3b43bc9b15a40c1d47692a/f727c669152658444bfd3e847bae1684d38c4804a67bbcb310584de2a4a1e72b?placeholderIfAbsent=true"
-                  alt="New"
-                  className="aspect-[1] object-contain w-4 shrink-0 my-auto"
-                />
+                <div className="ml-2 flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#E05406" stroke="#E05406" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-badge-new">
+                    <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/>
+                    <path d="M9.09 9h.85l2.6 3.5V9h.87v6h-.81l-2.64-3.5V15H9.1V9Z"/>
+                  </svg>
+                </div>
               )}
             </div>
 
             {/* Type */}
-            <div className="flex min-h-11 items-stretch text-sm text-[#586B78] font-normal whitespace-nowrap leading-6 w-[114px]">
-              <div className="text-ellipsis w-full flex-1 shrink basis-[0%] px-2">
-                {evaluation.type}
-              </div>
+            <div className="w-[100px] p-4 text-sm text-[#586B78]">
+              {evaluation.type}
             </div>
 
             {/* Period */}
-            <div className="flex min-h-11 items-stretch text-sm text-[#586B78] font-normal whitespace-nowrap leading-6 w-[114px]">
-              <div className="text-ellipsis w-full flex-1 shrink basis-[0%] px-2">
-                {evaluation.period}
-              </div>
+            <div className="w-[100px] p-4 text-sm text-[#586B78]">
+              {evaluation.period}
             </div>
 
             {/* Evaluators */}
-            <div className="flex min-h-11 items-center w-[115px]">
+            <div className="w-[120px] p-4 flex items-center">
               {evaluation.evaluators.length <= 1 ? (
                 <img
-                  src={
-                    evaluation.evaluators[0]?.avatar ||
-                    "https://cdn.builder.io/api/v1/image/assets/ab3ccf89ba3b43bc9b15a40c1d47692a/f6b9f688f17928793822bbafb2523976d902939deea65fefa067b076184dc052?placeholderIfAbsent=true"
-                  }
+                  src={evaluation.evaluators[0]?.avatar || `https://i.pravatar.cc/32?img=${index}`}
                   alt="Evaluator"
-                  className="aspect-[2.67] object-contain w-16 self-stretch gap-[-4px] my-auto"
+                  className="w-8 h-8 rounded-full object-cover"
                 />
               ) : (
                 <AvatarGroup
-                  avatars={evaluation.evaluators.map((e) => ({
-                    src: e.avatar,
+                  avatars={evaluation.evaluators.map((e, i) => ({
+                    src: e.avatar || `https://i.pravatar.cc/32?img=${index + i}`,
                   }))}
                   max={4}
                 />
@@ -128,55 +100,41 @@ const PerformanceTable: React.FC<PerformanceTableProps> = ({
             </div>
 
             {/* Start Date */}
-            <div className="flex min-h-11 items-stretch text-sm text-[#586B78] font-normal whitespace-nowrap leading-6 w-[114px] px-2">
-              <div className="text-ellipsis w-full flex-1 shrink basis-[0%] px-2">
-                {evaluation.startDate}
-              </div>
+            <div className="w-[100px] p-4 text-sm text-[#586B78]">
+              {evaluation.startDate}
             </div>
 
             {/* End Date */}
-            <div className="flex min-h-11 items-stretch text-sm text-[#586B78] font-normal whitespace-nowrap leading-6 w-[114px]">
-              <div className="text-ellipsis w-full flex-1 shrink basis-[0%] px-2">
-                {evaluation.endDate}
-              </div>
+            <div className="w-[100px] p-4 text-sm text-[#586B78]">
+              {evaluation.endDate}
             </div>
 
             {/* Areas */}
-            <div className="flex min-h-11 items-center gap-1 text-[10px] font-normal whitespace-nowrap leading-[1.4] w-[117px] px-2">
+            <div className="w-[120px] p-4 flex items-center gap-1">
               {evaluation.areas.map((area, idx) => (
                 <AreaTag key={idx} name={area.name} color={area.color} />
               ))}
             </div>
 
             {/* Collaborators */}
-            <div className="flex min-h-11 items-center gap-1 text-sm text-[#586B78] font-normal whitespace-nowrap leading-6 w-[124px] px-2">
-              <img
-                src={`URL_${121 + (index % 10)}`}
-                alt="Collaborators"
-                className="aspect-[1] object-contain w-6 self-stretch shrink-0 my-auto"
-              />
-              <div className="text-ellipsis self-stretch my-auto">
-                {evaluation.collaborators}
-              </div>
+            <div className="w-[120px] p-4 flex items-center gap-2 text-sm text-[#586B78]">
+              <Users className="w-5 h-5 text-[#0671E0]" />
+              <span>{evaluation.collaborators}</span>
             </div>
 
             {/* Status */}
-            <div className="flex min-h-11 items-center gap-1 text-[10px] font-normal whitespace-nowrap leading-[1.4] w-[102px] px-2">
+            <div className="w-[100px] p-4 flex items-center">
               <StatusTag status={evaluation.status} />
             </div>
 
             {/* Actions */}
-            <div className="flex min-h-11 items-stretch justify-center w-[100px] px-10 max-md:px-5">
-              <div
-                className="flex w-4 items-center h-full cursor-pointer"
+            <div className="w-[80px] p-4 flex justify-center items-center">
+              <button
+                className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
                 onClick={() => onActionClick(evaluation, "menu")}
               >
-                <img
-                  src={`URL_${123 + (index % 10)}`}
-                  alt="Actions"
-                  className="aspect-[1] object-contain w-4 self-stretch my-auto"
-                />
-              </div>
+                <MoreVertical className="w-5 h-5 text-[#586B78]" />
+              </button>
             </div>
           </div>
         ))}

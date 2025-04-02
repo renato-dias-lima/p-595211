@@ -1,3 +1,4 @@
+
 import React from "react";
 
 interface SubNavbarProps {
@@ -20,27 +21,32 @@ const SubNavbar: React.FC<SubNavbarProps> = ({
 
   return (
     <div
-      className="items-center shadow-[0px_1px_3px_0px_rgba(0,0,0,0.30)] flex w-full gap-6 flex-wrap px-20 py-2 max-md:max-w-full max-md:px-5"
+      className="flex w-full py-3 px-4 md:px-8 lg:px-20 overflow-x-auto shadow-md"
       style={{ background: "linear-gradient(90deg, #0671E0 0%, #0A6CD2 100%)" }}
     >
-      <div className="bg-[rgba(255,255,255,0.00)] self-stretch relative min-w-60 text-lg text-white font-medium w-[263px] my-auto">
-        <div className="self-stretch z-0 w-full gap-6 pl-[72px] max-md:pl-5">
+      <div className="relative flex-shrink-0 text-lg text-white font-medium mr-6 pl-16 md:pl-[72px]">
+        <div className="z-10 relative">
           Gestão de desempenho
         </div>
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/ab3ccf89ba3b43bc9b15a40c1d47692a/d8b0ea2a4ddff959801a42f5646b3c44f9b49d3556e388b82c8851155eaadc89?placeholderIfAbsent=true"
-          alt="Performance Icon"
-          className="aspect-[1] object-contain w-16 absolute z-0 bottom-[-31px] h-16 left-0"
-        />
+        <div className="absolute left-0 bottom-[-12px] z-0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="white" stroke="#0671E0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-activity">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
       </div>
-      <div className="self-stretch flex min-w-60 items-center gap-2 overflow-hidden text-sm text-white font-normal leading-6 flex-wrap flex-1 shrink basis-[0%] my-auto px-1 max-md:max-w-full">
+      
+      <div className="flex items-center gap-2 text-sm text-white overflow-x-auto hide-scrollbar pb-1 flex-grow">
         {tabs.map((tab) => (
           <div
             key={tab}
-            className={`self-stretch flex ${tab === "Metas e objetivos" ? "" : "whitespace-nowrap"} my-auto rounded-lg cursor-pointer ${activeTab === tab ? "bg-[rgba(255,255,255,0.14)] border border-white font-medium" : ""}`}
+            className={`cursor-pointer whitespace-nowrap rounded-lg px-3 py-1.5 transition-colors ${
+              activeTab === tab 
+                ? "bg-white/15 border border-white font-medium" 
+                : "hover:bg-white/10"
+            }`}
             onClick={() => onTabChange(tab)}
           >
-            <div className="px-2 py-1 rounded-[19px]">{tab}</div>
+            {tab}
           </div>
         ))}
       </div>
