@@ -36,14 +36,14 @@ const PerformanceEvaluationPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F6F9]">
+    <div className="min-h-screen flex flex-col bg-[#F4F6F9]">
       <div className="w-full">
         <Navbar />
       </div>
 
       <SubNavbar activeTab={activeTab} onTabChange={handleTabChange} />
 
-      <div className="w-full pt-6 pb-12 px-6 md:px-12 lg:px-20">
+      <div className="w-full pt-6 pb-12 px-6 md:px-12 lg:px-20 flex-grow">
         <PerformanceFilters onCreateEvaluation={handleCreateEvaluation} />
 
         <PerformanceTable
